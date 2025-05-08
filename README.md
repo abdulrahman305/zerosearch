@@ -12,7 +12,8 @@
 <div align="center">
 <a href='https://huggingface.co/collections/sunhaonlp/zerosearch-681b4ce012b9b6899832f4d0'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Colloectionss-blue'></a>
 <a href='https://huggingface.co/datasets/sunhaonlp/ZeroSearch_dataset'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-green'></a>
-<a href='https://huggingface.co/collections/sunhaonlp/simulation-llms-681b5177554c8d2d916b7b01'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-yellow'></a><br>
+<a href='https://huggingface.co/collections/sunhaonlp/simulation-llms-681b5177554c8d2d916b7b01'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-yellow'></a>
+<a href='https://arxiv.org/pdf/2501.07572'><img src='https://img.shields.io/badge/Paper-arXiv-red'></a><br>
 </div>
 
 <p align="center">
