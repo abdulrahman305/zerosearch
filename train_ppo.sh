@@ -11,7 +11,7 @@ END_THRESHOLD=${18}
 WAND_PROJECT='ZeroSearch'
 MODEL_NAME="${MODEL_PATH##*/}"
 
-export EXPERIMENT_NAME=${MODEL_NAME}_GRPO_${SEARCH_MODE}_${SIMULATION_LLM}_${START_THRESHOLD}_${END_THRESHOLD}
+export EXPERIMENT_NAME=${MODEL_NAME}_PPO_${SEARCH_MODE}_${SIMULATION_LLM}_${START_THRESHOLD}_${END_THRESHOLD}
 
 export VLLM_ATTENTION_BACKEND=XFORMERS # vllm + qwen2-7b with flash_attn has some issues
 
@@ -73,11 +73,11 @@ PYTHONUNBUFFERED=1 python3 -m verl.trainer.main_ppo \
     trainer.total_training_steps=${TOTAL_STEPS} \
     trainer.default_hdfs_dir=null \
     trainer.default_local_dir=verl_checkpoints/$EXPERIMENT_NAME \
-    trainer.max_turns=50 \
-    trainer.start_threshold=${START_THRESHOLD} \
-    trainer.end_threshold=${END_THRESHOLD} \
-    trainer.search_mode=${SEARCH_MODE} \
-    trainer.simulate_llm=${SIMULATION_LLM} \
+    trainer.max_turns=2 \
     trainer.reward_function=f1 \
     trainer.do_search=True \
-    retriever.llm_ip=${IP}
+    retriever.start_threshold=${START_THRESHOLD} \
+    retriever.end_threshold=${END_THRESHOLD} \
+    retriever.llm_ip=${IP} \
+    retriever.search_mode=${SEARCH_MODE} \
+    retriever.simulate_llm=${SIMULATION_LLM}
