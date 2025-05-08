@@ -70,24 +70,32 @@ huggingface-cli download --resume-download sunhaonlp/SearchSimulation_14B --loca
 (3) Launch a local simulation server.
 
 ```bash
-## Take the prompt-based simulation for example
-python -m sglang.launch_server --model-path Qwen2.5-7B-Instruct --host 0.0.0.0 --tp 2 --dp 2 --port 6001
+# Prompt-based simulation
+python -m sglang.launch_server --model-path Qwen2.5-14B-Instruct --host 0.0.0.0 --tp 2 --dp 2 --port 6001
 
-## Take the fine-tuning-based simulation for example
+# Fine-tuning-based simulation
 python -m sglang.launch_server --model-path SearchSimulation_14B --host 0.0.0.0 --tp 2 --dp 2 --port 6001
 ```
 
 (4) Conduct RL training with Llama-3.2-3B.
 
 ```bash
+# Activate the Conda environment
 conda activate zerosearch
 
-# Here we use fine-tuning-based simulation as an example, if you want to use prompt-based simulation, change the SEARCH_MODE to simulate_prompt
-# GRPO training
-bash train_grpo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM simulate_14B START_THRESHOLD 0.25 END_THRESHOLD 0.5
+# Set your Google Search API key
+export SER_API_KEY=your_api_key
 
-# PPO training
-bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM simulate_14B START_THRESHOLD 0.25 END_THRESHOLD 0.5
+# You can run GRPO or PPO training using the scripts below. GRPO is recommended due to its greater training stability.
+# The START_THRESHOLD and END_THRESHOLD parameters define the initial and final difficulty levels of the training tasks. Adjusting these values can help optimize model performance.
+
+## Prompt-based simulation
+bash train_grpo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_prompt SIMULATION_LLM simulate_14B START_THRESHOLD 0.25 END_THRESHOLD 0.5
+bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_prompt SIMULATION_LLM simulate_14B START_THRESHOLD 0.25 END_THRESHOLD 0.5
+
+## Fine-tuning-based simulation
+bash train_grpo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM Qwen2.5-14B-Instruct START_THRESHOLD 0.25 END_THRESHOLD 0.5
+bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM Qwen2.5-14B-Instruct START_THRESHOLD 0.25 END_THRESHOLD 0.5
 ```
 
 # 💡 Perfomance

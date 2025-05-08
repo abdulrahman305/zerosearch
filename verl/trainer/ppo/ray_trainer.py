@@ -849,7 +849,7 @@ class RayPPOTrainer(object):
 
                     # validate
                     if self.val_reward_fn is not None and self.config.trainer.test_freq > 0 and \
-                        self.global_steps % self.config.trainer.test_freq == 0 and self.global_steps > 50:
+                        self.global_steps % self.config.trainer.test_freq == 0:
                         with _timer('testing', timing_raw):
                             val_metrics: dict = self._validate(f'{self.config.trainer.default_local_dir}/record_{self.global_steps}.json')
                         metrics.update(val_metrics)
