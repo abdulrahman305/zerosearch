@@ -128,3 +128,19 @@ bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSear
 # 🙏 Acknowledgements
 
 This work is implemented based on [Search-R1](https://github.com/PeterGriffinJin/Search-R1), [veRL](https://github.com/volcengine/verl), and [RAGEN](https://github.com/ZihanWang314/RAGEN/tree/main). We sincerely thank the authors of these projects for their valuable contributions to the open-source community.
+
+## 🚩Citation
+
+If this work is helpful, please kindly cite as:
+
+```bigquery
+@misc{sun2025zerosearchincentivizesearchcapability,
+      title={ZeroSearch: Incentivize the Search Capability of LLMs without Searching}, 
+      author={Hao Sun and Zile Qiao and Jiayan Guo and Xuanbo Fan and Yingyan Hou and Yong Jiang and Pengjun Xie and Fei Huang and Yan Zhang},
+      year={2025},
+      eprint={2505.04588},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2505.04588}, 
+}
+```
