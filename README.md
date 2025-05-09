@@ -45,7 +45,7 @@ pip install -e .
 pip3 install flash-attn --no-build-isolation
 
 # sglang
-pip install sglang[all]==0.4.4.post3
+pip install sglang
 ```
 
 
