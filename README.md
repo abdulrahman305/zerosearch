@@ -10,7 +10,7 @@
 </div>
 
 <div align="center">
-<a href='https://huggingface.co/collections/sunhaonlp/zerosearch-681b4ce012b9b6899832f4d0'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Colloectionss-blue'></a>
+<a href='https://huggingface.co/collections/sunhaonlp/zerosearch-681b4ce012b9b6899832f4d0'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Collections-blue'></a>
 <a href='https://huggingface.co/datasets/sunhaonlp/ZeroSearch_dataset'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-green'></a>
 <a href='https://huggingface.co/collections/sunhaonlp/simulation-llms-681b5177554c8d2d916b7b01'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-yellow'></a>
 <a href='https://arxiv.org/pdf/2505.04588'><img src='https://img.shields.io/badge/Paper-arXiv-red'></a><br>
@@ -98,7 +98,7 @@ bash train_grpo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSea
 bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM Qwen2.5-14B-Instruct START_THRESHOLD 0.25 END_THRESHOLD 0.5
 ```
 
-# 💡 Perfomance
+# 💡 Performance
 
 ### 📊 Main Results
 
