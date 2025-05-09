@@ -18,7 +18,7 @@
 
 <p align="center">
   <i><b>Hao Sun, Zile Qiao, Jiayan Guo, Xuanbo Fan, Yingyan Hou</b></i><br>
-  <i><b>Yong Jiang, Pengjun Xie, Fei Huang, Yan Zhang</b></i><br><br>
+  <i><b>Yong Jiang, Pengjun Xie, Fei Huang, Yan Zhang</b></i><br>
   <i>Tongyi Lab <img src="./assets/tongyi.png" width="14px">, Alibaba Group</i>
 </p>
 
