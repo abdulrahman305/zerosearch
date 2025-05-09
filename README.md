@@ -90,12 +90,12 @@ export SER_API_KEY=your_api_key
 # The START_THRESHOLD and END_THRESHOLD parameters define the initial and final difficulty levels of the training tasks. Adjusting these values can help optimize model performance.
 
 ## Prompt-based simulation
-bash train_grpo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_prompt SIMULATION_LLM simulate_14B START_THRESHOLD 0.25 END_THRESHOLD 0.5
-bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_prompt SIMULATION_LLM simulate_14B START_THRESHOLD 0.25 END_THRESHOLD 0.5
+bash train_grpo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_prompt SIMULATION_LLM Qwen2.5-14B-Instruct START_THRESHOLD 0.25 END_THRESHOLD 0.5
+bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_prompt SIMULATION_LLM Qwen2.5-14B-Instruct START_THRESHOLD 0.25 END_THRESHOLD 0.5
 
 ## Fine-tuning-based simulation
-bash train_grpo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM Qwen2.5-14B-Instruct START_THRESHOLD 0.25 END_THRESHOLD 0.5
-bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM Qwen2.5-14B-Instruct START_THRESHOLD 0.25 END_THRESHOLD 0.5
+bash train_grpo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM SearchSimulation_14B START_THRESHOLD 0.25 END_THRESHOLD 0.5
+bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Llama-3.2-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM SearchSimulation_14B START_THRESHOLD 0.25 END_THRESHOLD 0.5
 ```
 
 # 💡 Performance
