@@ -134,13 +134,10 @@ This work is implemented based on [Search-R1](https://github.com/PeterGriffinJin
 If this work is helpful, please kindly cite as:
 
 ```bigquery
-@misc{sun2025zerosearchincentivizesearchcapability,
-      title={ZeroSearch: Incentivize the Search Capability of LLMs without Searching}, 
-      author={Hao Sun and Zile Qiao and Jiayan Guo and Xuanbo Fan and Yingyan Hou and Yong Jiang and Pengjun Xie and Fei Huang and Yan Zhang},
-      year={2025},
-      eprint={2505.04588},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2505.04588}, 
+@article{sun2025zerosearch,
+  title={ZeroSearch: Incentivize the Search Capability of LLMs without Searching},
+  author={Sun, Hao and Qiao, Zile and Guo, Jiayan and Fan, Xuanbo and Hou, Yingyan and Jiang, Yong and Xie, Pengjun and Huang, Fei and Zhang, Yan},
+  journal={arXiv preprint arXiv:2505.04588},
+  year={2025}
 }
 ```
