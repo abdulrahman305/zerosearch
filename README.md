@@ -45,7 +45,9 @@ pip install -e .
 pip3 install flash-attn --no-build-isolation
 
 # sglang
-pip install sglang
+# If you encounter package conflicts when trying to install sglang in the current environment, we recommend creating a new environment and installing sglang there.
+pip install sglang[all]
+
 ```
 
 
