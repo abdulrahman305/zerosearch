@@ -11,21 +11,11 @@
 
 
 <div align="center">
-  <a href='https://alibaba-nlp.github.io/ZeroSearch/'>
-    <img src='https://img.shields.io/badge/Homepage-ZeroSearch-6c5ce7?logo=github&logoColor=white'>
-  </a>
-  <a href='https://arxiv.org/pdf/2505.04588'>
-    <img src='https://img.shields.io/badge/Paper-arXiv-d63031?logo=arxiv&logoColor=white'>
-  </a>
-  <a href='https://huggingface.co/collections/sunhaonlp/zerosearch-v2-6827f4ee6b6265069d443d4e'>
-    <img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-0984e3'>
-  </a>
-  <a href='https://huggingface.co/datasets/sunhaonlp/ZeroSearch_dataset'>
-    <img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-00b894'>
-  </a>
-  <a href='https://x.com/_akhaliq/status/1920397374007984516'>
-    <img src='https://img.shields.io/twitter/url?url=https%3A%2F%2Fx.com%2FKevin_GuoweiXu%2Fstatus%2F1858338565463421244'>
-  </a><br>
+  <a href='https://alibaba-nlp.github.io/ZeroSearch/'><img src='https://img.shields.io/badge/Homepage-ZeroSearch-6c5ce7?logo=github&logoColor=white'></a>
+  <a href='https://arxiv.org/pdf/2505.04588'><img src='https://img.shields.io/badge/Paper-arXiv-d63031?logo=arxiv&logoColor=white'></a>
+  <a href='https://huggingface.co/collections/sunhaonlp/zerosearch-v2-6827f4ee6b6265069d443d4e'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-0984e3'></a>
+  <a href='https://huggingface.co/datasets/sunhaonlp/ZeroSearch_dataset'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-00b894'></a>
+  <a href='https://x.com/_akhaliq/status/1920397374007984516'><img src='https://img.shields.io/twitter/url?url=https%3A%2F%2Fx.com%2FKevin_GuoweiXu%2Fstatus%2F1858338565463421244'></a><br>
 </div>
 
 
