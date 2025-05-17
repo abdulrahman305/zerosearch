@@ -155,6 +155,16 @@ def compute_grpo_outcome_advantage(token_level_rewards: torch.Tensor,
     return scores, scores
 
 
+def compute_reinforce_outcome_advantage(
+    token_level_rewards: torch.Tensor,
+    response_mask: torch.Tensor,
+):
+    scores = token_level_rewards.sum(dim=-1)
+    advantages = scores.unsqueeze(-1) * response_mask
+    returns = advantages
+    return advantages, returns
+
+
 def compute_rewards(token_level_scores, old_log_prob, ref_log_prob, kl_ratio):
     kl = old_log_prob - ref_log_prob
     return token_level_scores - kl * kl_ratio

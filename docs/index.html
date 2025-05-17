@@ -77,7 +77,7 @@
             <h1 class="title is-2 publication-title">ZeroSearch: Incentivize the Search Capability of LLMs without Searching</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
-              <span class="author-block">Hao Sun,</span>
+              <span class="author-block"><a href="https://sunhaopku.github.io/" target="_blank">Hao Sun</a>,</span>
               <span class="author-block">Zile Qiao<sup>&dagger;</sup>,</span>
               <span class="author-block">Jiayan Guo<sup>&dagger;</sup>,</span>
               <span class="author-block">Xuanbo Fan,</span>
@@ -85,13 +85,15 @@
               <br>
               <span class="author-block">Yong Jiang,</span>
               <span class="author-block">Pengjun Xie,</span>
-              <span class="author-block">Fei Huang</span>
               <span class="author-block">Yan Zhang<sup>&dagger;</sup>,</span>
+              <span class="author-block">Fei Huang</span>
+              <span class="author-block">Jingren Zhou</span>
+
             </div>
 
             <div class="is-size-5 publication-authors">
-<!--              sunhao@stu.pku.edu.cn-->
-<!--              <br>-->
+              sunhao@stu.pku.edu.cn
+              <br>
               <span class="author-block"><b>Tongyi Lab <img src="static/images/tongyi.jpg" alt="Tongyi Logo" style="width: 20px; height: 20px;"/>
                 , Alibaba Group</b></span>
 <!--              <span class="eql-cntrb"><small><br><sup>*</sup>Work done during internship at Tongyi Lab, Alibaba Group.</small></span>-->
@@ -131,7 +133,7 @@
 
 
                 <span class="link-block">
-                  <a href="https://huggingface.co/collections/sunhaonlp/zerosearch-681b4ce012b9b6899832f4d0" target="_blank"
+                  <a href="https://huggingface.co/collections/sunhaonlp/zerosearch-v2-6827f4ee6b6265069d443d4e" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <img src="static/images/hf-logo.png" alt="Hugging Face Logo" style="width: 20px; height: 20px;"/>
@@ -160,12 +162,12 @@
               Effective information searching is essential for enhancing the reasoning and generation capabilities of large language models (LLMs). Recent research has explored using reinforcement learning (RL) to improve LLMs' search capabilities by interacting with live search engines in real-world environments. While these approaches show promising results, they face two major challenges:
 (1) <b style="color:#615ced;">Uncontrolled Document Quality</b>: The quality of documents returned by search engines is often unpredictable, introducing noise and instability into the training process.
 (2) <b style="color:#615ced;">Prohibitively High API Costs</b>: RL training requires frequent rollouts, potentially involving hundreds of thousands of search requests, which incur substantial API expenses and severely constrain scalability.
-To address these challenges, we introduce <b style="color:#615ced;">ZeroSearch</b>, a reinforcement learning framework that <b style="color:#615ced;">enhances the search capabilities of LLMs without interacting with real search engines</b>.
-Our approach begins with lightweight supervised fine-tuning to transform the LLM into a retrieval module capable of generating both relevant and noisy documents in response to a query.
+To address these challenges, we introduce <b style="color:#615ced;">ZeroSearch</b>, a novel RL framework that <b style="color:#615ced;">incentivizes the capabilities of LLMs to use a real search engine with simulated searches during training</b>.
+Our approach begins with lightweight supervised fine-tuning to transform the LLM into a retrieval module capable of generating both useful and noisy documents in response to a query.
 During RL training, we employ a curriculum-based rollout strategy that incrementally degrades the quality of generated documents, progressively eliciting the model’s reasoning ability by exposing it to increasingly challenging retrieval scenarios.
 Extensive experiments demonstrate that <b style="color:#615ced;">ZeroSearch effectively incentivizes the search capabilities of LLMs using a 3B LLM as the retrieval module</b>.
 Remarkably, a 7B retrieval module achieves comparable performance to the real search engine, while a 14B retrieval module even surpasses it.
-Furthermore, it generalizes well across both base and instruction-tuned models of varying sizes and is compatible with a wide range of RL algorithms.
+Furthermore, it generalizes well across both base and instruction-tuned models of various parameter sizes and is compatible with a wide range of RL algorithms.
             </p>
           </div>
           </div>
@@ -182,13 +184,13 @@ Furthermore, it generalizes well across both base and instruction-tuned models o
         <h2 class="title is-3">🌟Overview</h2>
         <div class="content has-text-justified">
           <p>
-            🔍 We propose ZeroSearch, a novel reinforcement learning framework that incentivizes the search capability of LLMs without interacting with real search engines.
+            🔍 We propose ZeroSearch, a novel reinforcement learning framework that incentivizes the capability of LLMs to use real search engines without interacting with them during training.
           </p>
           <p>
-            🤖 Through supervised fine-tuning, we transform the LLM into a retrieval module capable of generating both relevant and noisy documents in response to a query. We further introduce a curriculum rollout mechanism to progressively elicit the model’s reasoning ability by exposing it to increasingly challenging retrieval scenarios.
+            🤖 Through supervised fine-tuning, we transform the LLM into a retrieval module capable of generating both useful and noisy documents in response to a query. We further introduce a curriculum rollout mechanism to progressively elicit the model’s reasoning ability by exposing it to increasingly challenging retrieval scenarios.
           </p>
           <p>
-            📊 We conduct extensive experiments on both in-domain and out-of-domain datasets. Results show that ZeroSearch outperforms real search engine-based models while incurring zero API cost. Moreover, it generalizes well across both base and instruction-tuned LLMs of various sizes and supports different reinforcement learning algorithms.
+            📊 We conduct extensive experiments on both in-domain and out-of-domain datasets. Results show that ZeroSearch outperforms real search engine-based models while incurring zero API cost. Moreover, it generalizes well across both base and instruction-tuned LLMs of various parameter sizes and supports different reinforcement learning algorithms.
           </p>
         </div>
       </div>
@@ -223,14 +225,21 @@ Furthermore, it generalizes well across both base and instruction-tuned models o
 
           <p>
             <b style="color:#615ced;">Search Simulation Tuning</b> We propose a lightweight supervised fine-tuning (SFT) procedure. Specifically, we first collect interaction trajectories by prompting the LLM to engage with a real search engine in a multi-turn manner until a final answer is reached.
-            Trajectories that yield correct answers are labeled as positive, indicating that the retrieved documents were useful, while those leading to incorrect answers are labeled as negative, indicating noisy retrievals.
-            Then, we extract query-document pairs from these trajectories and perform lightweight SFT to improve the LLM’s ability to simulate real search engines.
+            From these trajectories, we extract query-document pairs and employ the LLM as the judge to independently assess whether each document contains sufficient information to answer the corresponding query.
+            Then, we perform lightweight SFT to enhance the LLM’s ability to generate both useful and noisy outputs in response to queries.
           </p>
 
           <p>
             <b style="color:#615ced;">Rollout with Curriculum Search Simulation</b> During rollout, the policy model performs interactive reasoning and generates search queries, which are fed into the simulation LLM to produce corresponding documents.
             To gradually increase the difficulty of training, we introduce a curriculum learning-based rollout mechanism, where the quality of the retrieved documents is progressively degraded over time.
+            This is controlled by a probability function \(p_i\) that governs the likelihood of generating noisy documents at step \(i\):
           </p>
+
+          </p>
+          \[
+          p_i\;=\; p_s \;+\;\frac{b^{\,i/m} - 1}{b - 1}\,(p_e - p_s)
+          \]
+          <p>
 
           <p>
             <b style="color:#615ced;">Reward Design</b> The reward signal serves as the primary supervision in the reinforcement learning process.
@@ -238,7 +247,7 @@ Furthermore, it generalizes well across both base and instruction-tuned models o
           </p>
           <p>
             \[
-            r_{\phi}(x, y) = \frac{2 \times IN}{PN + RN},
+            r_{\phi}(x, y) = \frac{2 \times IN}{PN + RN}
             \]
           </p>
           <p>
@@ -301,8 +310,8 @@ Furthermore, it generalizes well across both base and instruction-tuned models o
             As training progresses, the reward scores of both ZeroSearch and Search-R1 steadily increase, indicating that the policy models in both settings effectively learn to interact with search engines and produce correct answers.
           </p>
           <p>
-            <strong>ZeroSearch achieves a more stable and smoother learning curve.</strong>
-            ZeroSearch initially lags behind Search-R1 but eventually surpasses it with much less fluctuation, thanks to the curriculum mechanism that helps the model gradually master search tool usage.
+            <strong>ZeroSearch achieves a more pronounced reward improvement.</strong>
+            ZeroSearch initially lags behind Search-R1 but eventually surpasses it with less fluctuation, thanks to the curriculum mechanism that helps the model gradually master search tool usage.
           </p>
           <p>
             <strong>ZeroSearch generalizes well across both base and instruction-tuned models.</strong>
@@ -311,7 +320,7 @@ Furthermore, it generalizes well across both base and instruction-tuned models o
         </div>
 
         <!-- RAG results -->
-        <img src="static/images/compare_simulation_llm.jpg" width="60%">
+        <img src="static/images/compare_simulation_llm.jpg" width="80%">
         <div class="content has-text-justified">
           <p>
             <b style="color:#615ced;">Choice of Simulation LLMs</b>
@@ -332,7 +341,7 @@ Furthermore, it generalizes well across both base and instruction-tuned models o
         </div>
 
         <!-- Case studies -->
-        <img src="static/images/case_study.jpg" width="60%">
+        <img src="static/images/case_study.jpg" width="80%">
         <div class="content has-text-justified">
           <p>
             <b style="color:#615ced;">Case Study</b>
