@@ -76,7 +76,8 @@ huggingface-cli download --repo-type dataset --resume-download sunhaonlp/Simulat
 (2) Download the simulation LLMs.
 
 ```bash
-# There are different parameter sizes, please choose based on your needs.
+# Simulation LLMs are available in different parameter sizes. Choose the one that best suits your needs.
+# The 14B version is recommended for its stable and reliable simulation performance.
 huggingface-cli download --resume-download sunhaonlp/SearchSimulation_3B_V2 --local-dir SearchSimulation_3B
 
 huggingface-cli download --resume-download sunhaonlp/SearchSimulation_7B_V2 --local-dir SearchSimulation_7B
