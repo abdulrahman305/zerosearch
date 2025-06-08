@@ -30,8 +30,9 @@
 
 # 🔥 News
 
-- **[2025.05.17]** Released a new version of simulation LLMs and policy models.
-- **[2025.05.17]** Released the simulation tuning dataset.
+- **[2025.06.08]** Released the [policy models](https://huggingface.co/collections/sunhaonlp/zerosearch-policy-wiki-v2-68442dce61d2e68f6623e500) compatible with Wikipedia retriever.
+- **[2025.05.17]** Released a new version of [simulation LLMs](https://huggingface.co/collections/sunhaonlp/simulation-llm-google-v2-6827f4e45bca955ed2b2d0ba) and [policy models](https://huggingface.co/collections/sunhaonlp/zerosearch-policy-google-v2-6827f4ee6b6265069d443d4e).
+- **[2025.05.17]** Released the [simulation tuning dataset](https://huggingface.co/datasets/sunhaonlp/SimulationTuning_dataset).
 - **[2025.05.17]** Added support for three RL algorithms: REINFORCE, GPRO, and PPO.
 - **[2025.05.08]** Released the initial codebase and paper.
 
@@ -78,11 +79,11 @@ huggingface-cli download --repo-type dataset --resume-download sunhaonlp/Simulat
 ```bash
 # Simulation LLMs are available in different parameter sizes. Choose the one that best suits your needs.
 # The 14B version is recommended for its stable and reliable simulation performance.
-huggingface-cli download --resume-download sunhaonlp/SearchSimulation_3B_V2 --local-dir SearchSimulation_3B
+huggingface-cli download --resume-download sunhaonlp/Simulation_LLM_google_3B_V2 --local-dir Simulation_LLM_google_3B
 
-huggingface-cli download --resume-download sunhaonlp/SearchSimulation_7B_V2 --local-dir SearchSimulation_7B
+huggingface-cli download --resume-download sunhaonlp/Simulation_LLM_google_7B_V2 --local-dir Simulation_LLM_google_7B
 
-huggingface-cli download --resume-download sunhaonlp/SearchSimulation_14B_V2 --local-dir SearchSimulation_14B
+huggingface-cli download --resume-download sunhaonlp/Simulation_LLM_google_14B_V2 --local-dir Simulation_LLM_google_14B
 ```
 
 (3) Launch a local simulation server.
@@ -92,7 +93,7 @@ huggingface-cli download --resume-download sunhaonlp/SearchSimulation_14B_V2 --l
 python -m sglang.launch_server --model-path Qwen2.5-14B-Instruct --host 0.0.0.0 --tp 2 --dp 2 --port 6001
 
 # Fine-tuning-based simulation
-python -m sglang.launch_server --model-path SearchSimulation_14B --host 0.0.0.0 --tp 2 --dp 2 --port 6001
+python -m sglang.launch_server --model-path Simulation_LLM_google_14B --host 0.0.0.0 --tp 2 --dp 2 --port 6001
 ```
 
 (4) Conduct RL training with Qwen2.5-3B.
@@ -113,9 +114,9 @@ bash train_grpo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B DATA_PATH ZeroSearc
 bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_prompt SIMULATION_LLM Qwen2.5-14B-Instruct START_THRESHOLD 0 END_THRESHOLD 0.5
 
 ## Fine-tuning-based simulation
-bash train_reinforce.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM SearchSimulation_14B START_THRESHOLD 0 END_THRESHOLD 0.5
-bash train_grpo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM SearchSimulation_14B START_THRESHOLD 0 END_THRESHOLD 0.5
-bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM SearchSimulation_14B START_THRESHOLD 0 END_THRESHOLD 0.5
+bash train_reinforce.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM Simulation_LLM_google_14B START_THRESHOLD 0 END_THRESHOLD 0.5
+bash train_grpo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM Simulation_LLM_google_14B START_THRESHOLD 0 END_THRESHOLD 0.5
+bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM Simulation_LLM_google_14B START_THRESHOLD 0 END_THRESHOLD 0.5
 ```
 
 # 💡 Performance
