@@ -30,8 +30,8 @@
 
 # 🔥 News
 
-- **[2025.06.08]** Released the [policy models](https://huggingface.co/collections/sunhaonlp/zerosearch-policy-wiki-v2-68442dce61d2e68f6623e500) compatible with Wikipedia retriever.
-- **[2025.05.17]** Released a new version of [simulation LLMs](https://huggingface.co/collections/sunhaonlp/simulation-llm-google-v2-6827f4e45bca955ed2b2d0ba) and [policy models](https://huggingface.co/collections/sunhaonlp/zerosearch-policy-google-v2-6827f4ee6b6265069d443d4e).
+- **[2025.06.08]** Released the [simulation LLMs](https://huggingface.co/collections/sunhaonlp/simulation-llm-wiki-v2-6857b06122425526d82a42d4) and [policy models](https://huggingface.co/collections/sunhaonlp/zerosearch-policy-wiki-v2-68442dce61d2e68f6623e500) compatible with Wikipedia Search.
+- **[2025.05.17]** Released the [simulation LLMs](https://huggingface.co/collections/sunhaonlp/simulation-llm-google-v2-6827f4e45bca955ed2b2d0ba) and [policy models](https://huggingface.co/collections/sunhaonlp/zerosearch-policy-google-v2-6827f4ee6b6265069d443d4e) compatible with Google Search.
 - **[2025.05.17]** Released the [simulation tuning dataset](https://huggingface.co/datasets/sunhaonlp/SimulationTuning_dataset).
 - **[2025.05.17]** Added support for three RL algorithms: REINFORCE, GPRO, and PPO.
 - **[2025.05.08]** Released the initial codebase and paper.
@@ -41,6 +41,14 @@
 - We propose ZeroSearch, a novel reinforcement learning framework that incentivizes the capability of LLMs to use a real search engine with simulated searches during training. 
 - Through supervised fine-tuning, we transform the LLM into a retrieval module capable of generating both relevant and noisy documents in response to a query. We further introduce a curriculum rollout mechanism to progressively elicit the model’s reasoning ability by exposing it to increasingly challenging retrieval scenarios.
 - We conduct extensive experiments on both in-domain and out-of-domain datasets. Results show that ZeroSearch outperforms real search engine-based models while incurring zero API cost. Moreover, it generalizes well across both base and instruction-tuned LLMs of various sizes and supports different reinforcement learning algorithms.
+
+# 🤗 Resources
+
+| Retriever | Simulation Tuning Dataset                                    | Simulation LLMs                                              | Policy Model                                                 |
+| --------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Wikipedia | •[SimulationTuning_wiki_dataset](https://huggingface.co/datasets/sunhaonlp/SimulationTuning_wiki_dataset) | •[Simulation_LLM_wiki_3B_V2](https://huggingface.co/sunhaonlp/Simulation_LLM_wiki_3B_V2)<br>•[Simulation_LLM_wiki_7B_V2](https://huggingface.co/sunhaonlp/Simulation_LLM_wiki_7B_V2)<br>•[Simulation_LLM_wiki_14B_V2](https://huggingface.co/sunhaonlp/Simulation_LLM_wiki_14B_V2) | •[Qwen2.5_3B_ZeroSearch_wiki_V2](https://huggingface.co/sunhaonlp/Qwen2.5_3B_ZeroSearch_wiki_V2)<br>•[Qwen2.5_3B_Instruct_ZeroSearch_wiki_V2](https://huggingface.co/sunhaonlp/Qwen2.5_3B_Instruct_ZeroSearch_wiki_V2)<br>•[Llama_3.2_3B_ZeroSearch_wiki_V2](https://huggingface.co/sunhaonlp/Llama_3.2_3B_ZeroSearch_wiki_V2)<br>•[Llama_3.2_3B_Instruct_ZeroSearch_wiki_V2](https://huggingface.co/sunhaonlp/Llama_3.2_3B_Instruct_ZeroSearch_wiki_V2)<br>•[Qwen2.5_7B_ZeroSearch_wiki_V2](https://huggingface.co/sunhaonlp/Qwen2.5_7B_ZeroSearch_wiki_V2)<br>•[Qwen2.5_7B_Instruct_ZeroSearch_wiki_V2](https://huggingface.co/sunhaonlp/Qwen2.5_7B_Instruct_ZeroSearch_wiki_V2) |
+| Google    | •[SimulationTuning_google_dataset](https://huggingface.co/datasets/sunhaonlp/SimulationTuning_google_dataset) | •[Simulation_LLM_google_3B_V2](https://huggingface.co/sunhaonlp/Simulation_LLM_google_3B_V2)<br>•[Simulation_LLM_google_7B_V2](https://huggingface.co/sunhaonlp/Simulation_LLM_google_7B_V2)<br>•[Simulation_LLM_google_14B_V2](https://huggingface.co/sunhaonlp/Simulation_LLM_google_14B_V2) | •[Qwen2.5_3B_ZeroSearch_google_V2](https://huggingface.co/sunhaonlp/Qwen2.5_3B_ZeroSearch_google_V2)<br>•[Qwen2.5_3B_Instruct_ZeroSearch_google_V2](https://huggingface.co/sunhaonlp/Qwen2.5_3B_Instruct_ZeroSearch_google_V2)<br>•[Llama_3.2_3B_ZeroSearch_google_V2](https://huggingface.co/sunhaonlp/Llama_3.2_3B_ZeroSearch_google_V2)<br>•[Llama_3.2_3B_Instruct_ZeroSearch_google_V2](https://huggingface.co/sunhaonlp/Llama_3.2_3B_Instruct_ZeroSearch_google_V2)<br>•[Qwen2.5_7B_ZeroSearch_google_V2](https://huggingface.co/sunhaonlp/Qwen2.5_7B_ZeroSearch_google_V2)<br>•[Qwen2.5_7B_Instruct_ZeroSearch_google_V2](https://huggingface.co/sunhaonlp/Qwen2.5_7B_Instruct_ZeroSearch_google_V2) |
+
 
 # 🛠 Dependencies
 
