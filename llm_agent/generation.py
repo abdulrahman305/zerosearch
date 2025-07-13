@@ -11,7 +11,7 @@ import random
 import time
 import serpapi
 import math
-
+import requests
 
 @dataclass
 class GenerationConfig:
@@ -23,12 +23,14 @@ class GenerationConfig:
     num_gpus: int
     no_think_rl: bool=False
     llm_ip: str = None
+    retriever_ip: str = None
     temperature: float = 0.8
     topk: int = 5
     search_mode: str = 'google'
     end_threshold: float = 0.5
     start_threshold: float = 0.5
-    simulate_llm: str = 'None'
+
+
 
 def ask_llm(ip_list_raw, prompt, temperature):
     ip_list = ip_list_raw.split(',')
@@ -47,7 +49,7 @@ def ask_llm(ip_list_raw, prompt, temperature):
 
             chat_response = client.chat.completions.create(
                 model='',
-                max_tokens=500,
+                max_tokens=600,
                 temperature=temperature,
                 messages=[
                     {"role": "system", "content": ""},
@@ -62,7 +64,7 @@ def ask_llm(ip_list_raw, prompt, temperature):
         except:
             continue
 
-def search_simulate_sft(ip, temperature, query, problem, ground_truth, gt_threshold):
+def search_simulate_sft(ip, topk, temperature, query, problem, ground_truth, gt_threshold):
     prob = random.random()
     if prob > gt_threshold:
         prompt = f'''You are the Google search engine.
@@ -86,9 +88,9 @@ Noisy Output:
 '''
 
     resuts = ask_llm(ip, prompt, temperature)
-    return '\n'.join(resuts.replace('\n\n', '\n').split('\n')[:5])
+    return '\n'.join(resuts.replace('\n\n', '\n').split('\n')).split(f'Doc {topk+1}')[0]
 
-def search_simulate_prompt(ip, temperature, query, problem, ground_truth, gt_threshold):
+def search_simulate_prompt(ip, topk, temperature, query, problem, ground_truth, gt_threshold):
     prob = random.random()
     if prob > gt_threshold:
         prompt = f'''You are the Google search engine.
@@ -132,7 +134,7 @@ Noisy Output:
 '''
 
     resuts = ask_llm(ip, prompt, temperature)
-    return '\n'.join(resuts.replace('\n\n', '\n').split('\n')[:5])
+    return '\n'.join(resuts.replace('\n\n', '\n').split('\n')).split(f'Doc {topk+1}')[0]
 
 class LLMGenerationManager:
     def __init__(
@@ -535,7 +537,6 @@ If I want to give the final answer, I should put the answer between <answer> and
             
         return next_obs, dones, valid_action, is_search
 
-
     def dynamic_threshold(self, current_step, total_steps, current_turn=1, max_turns=5):
         if current_step >= total_steps:
             final_threshold = self.config.end_threshold
@@ -598,13 +599,28 @@ If I want to give the final answer, I should put the answer between <answer> and
 
         return all_search_result
 
-    def search_text_by_text(self, query, retry_attempt=3):
+    def retrieve_from_wiki(self, ip, query, topk=5):
+        for _ in range(10):
+            try:
+                payload = {'query': query, 'top_k': topk}
+                response = requests.post(f'http://{ip}:6002/retrieve', json=payload)
+                # import pdb; pdb.set_trace()
+                doc_texts = '\n'.join([f"Doc {i + 1}: {doc['text']}" for i, doc in enumerate(response.json())])
+                return doc_texts
+
+            except Exception as e:
+                time.sleep(1)
+                print(e)
+                continue
+        return 'No information available'
+
+    def retrieve_from_google(self, query, topk, retry_attempt=3):
         SER_API_KEY = os.environ.get("SER_API_KEY", None)
         params = {
             "engine": "google",
             "q": query,
             "api_key": SER_API_KEY,
-            "num": 5
+            "num": topk
         }
 
         for i in range(retry_attempt):
@@ -633,12 +649,14 @@ If I want to give the final answer, I should put the answer between <answer> and
 
     def _search(self, query, problem, ground_truth, search_mode, gt_threshold, index):
         if search_mode == 'google':
-            doc_texts = self.search_text_by_text(query)
+            doc_texts = self.retrieve_from_google(query, self.config.topk)
+        if search_mode == 'wiki':
+            doc_texts = self.retrieve_from_wiki(self.config.retriever_ip, query, self.config.topk)
         elif search_mode == 'simulate_sft':
-            doc_texts = search_simulate_sft(self.config.llm_ip,self.config.temperature, query, problem, ground_truth, gt_threshold)
+            doc_texts = search_simulate_sft(self.config.llm_ip, self.config.topk, self.config.temperature, query, problem, ground_truth, gt_threshold)
         elif search_mode == 'simulate_prompt':
-            doc_texts = search_simulate_prompt(self.config.llm_ip, self.config.temperature, query, problem, ground_truth, gt_threshold)
-        print(doc_texts)
+            doc_texts = search_simulate_prompt(self.config.llm_ip, self.config.topk, self.config.temperature, query, problem, ground_truth, gt_threshold)
+        # print(doc_texts)
         return doc_texts, index
 
     def _passages2string(self, retrieval_result):

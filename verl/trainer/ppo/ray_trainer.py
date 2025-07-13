@@ -461,11 +461,10 @@ class RayPPOTrainer(object):
             max_obs_length=self.config.data.max_obs_length,
             num_gpus=self.config.trainer.n_gpus_per_node,
             no_think_rl=self.config.algorithm.no_think_rl,
-            simulate_llm=self.config.retriever.simulate_llm,
             llm_ip=self.config.retriever.llm_ip,
+            retriever_ip=self.config.retriever.retriever_ip,
             start_threshold=self.config.retriever.start_threshold,
             end_threshold=self.config.retriever.end_threshold,
-            search_mode=self.config.retriever.search_mode,
             topk = self.config.retriever.topk
         )
 
@@ -534,7 +533,7 @@ class RayPPOTrainer(object):
                         generation_manager.timing_raw = timing_raw
                         final_gen_batch_output, trajectory_turns = generation_manager.run_llm_loop(
                             gen_batch=test_gen_batch,
-                            search_mode='google',
+                            search_mode=self.config.retriever.search_engine,
                             initial_input_ids=first_input_ids,
                             current_step=self.global_steps,
                             total_steps=self.config.trainer.total_training_steps,
@@ -726,11 +725,10 @@ class RayPPOTrainer(object):
             max_obs_length=self.config.data.max_obs_length,
             num_gpus=self.config.trainer.n_gpus_per_node,
             no_think_rl=self.config.algorithm.no_think_rl,
-            simulate_llm=self.config.retriever.simulate_llm,
             llm_ip=self.config.retriever.llm_ip,
+            retriever_ip=self.config.retriever.retriever_ip,
             start_threshold=self.config.retriever.start_threshold,
             end_threshold=self.config.retriever.end_threshold,
-            search_mode=self.config.retriever.search_mode,
             temperature=self.config.retriever.temperature,
             topk = self.config.retriever.topk
         )

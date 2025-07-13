@@ -144,12 +144,14 @@ reward_model:
 
 retriever:
   llm_ip: localhost
+  retriever_ip: localhost
   topk: 5
   search_mode: simulate
   simulate_llm: None
   start_threshold: 0.5
   end_threshold: 0.5
   temperature: 0.8
+  search_engine: wiki
 
 algorithm:
   gamma: 1.0

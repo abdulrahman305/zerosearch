@@ -104,7 +104,7 @@ python -m sglang.launch_server --model-path Qwen2.5-14B-Instruct --host 0.0.0.0 
 python -m sglang.launch_server --model-path Simulation_LLM_google_14B --host 0.0.0.0 --tp 2 --dp 2 --port 6001
 ```
 
-(4) Conduct RL training with Qwen2.5-3B.
+(4) Conduct RL training with Qwen2.5-3B-Instruct.
 
 ```bash
 # Activate the conda environment
@@ -113,18 +113,18 @@ conda activate zerosearch
 # Set your Google Search API key
 export SER_API_KEY=your_api_key
 
-# You can run REINFORCE, GRPO or PPO training using the scripts below. We recommend REINFORCE for its greater training stability.
+# You can run REINFORCE, GRPO or PPO training using the scripts below.
 # The START_THRESHOLD and END_THRESHOLD parameters define the initial and final difficulty levels of the training tasks. Adjusting these values can help optimize model performance.
 
 ## Prompt-based simulation
-bash train_reinforce.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_prompt SIMULATION_LLM Qwen2.5-14B-Instruct START_THRESHOLD 0 END_THRESHOLD 0.5
-bash train_grpo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_prompt SIMULATION_LLM Qwen2.5-14B-Instruct START_THRESHOLD 0 END_THRESHOLD 0.5
-bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_prompt SIMULATION_LLM Qwen2.5-14B-Instruct START_THRESHOLD 0 END_THRESHOLD 0.5
+bash train_reinforce.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B-Instruct DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_prompt SIMULATION_LLM Qwen2.5-14B-Instruct START_THRESHOLD 0 END_THRESHOLD 0.5 SEARCH_ENGINE google MAX_TURNS 5 TOPK 5
+bash train_grpo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B-Instruct DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_prompt SIMULATION_LLM Qwen2.5-14B-Instruct START_THRESHOLD 0 END_THRESHOLD 0.5 SEARCH_ENGINE google MAX_TURNS 5 TOPK 5
+bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B-Instruct DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_prompt SIMULATION_LLM Qwen2.5-14B-Instruct START_THRESHOLD 0 END_THRESHOLD 0.5 SEARCH_ENGINE google MAX_TURNS 5 TOPK 5
 
 ## Fine-tuning-based simulation
-bash train_reinforce.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM Simulation_LLM_google_14B START_THRESHOLD 0 END_THRESHOLD 0.5
-bash train_grpo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM Simulation_LLM_google_14B START_THRESHOLD 0 END_THRESHOLD 0.5
-bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM Simulation_LLM_google_14B START_THRESHOLD 0 END_THRESHOLD 0.5
+bash train_reinforce.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B-Instruct DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM Simulation_LLM_google_14B START_THRESHOLD 0 END_THRESHOLD 0.5 SEARCH_ENGINE google MAX_TURNS 5 TOPK 5
+bash train_grpo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B-Instruct DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM Simulation_LLM_google_14B START_THRESHOLD 0 END_THRESHOLD 0.5 SEARCH_ENGINE google MAX_TURNS 5 TOPK 5
+bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B-Instruct DATA_PATH ZeroSearch_dataset TOTAL_STEPS 203 IP localhost SEARCH_MODE simulate_sft SIMULATION_LLM Simulation_LLM_google_14B START_THRESHOLD 0 END_THRESHOLD 0.5 SEARCH_ENGINE google MAX_TURNS 5 TOPK 5
 ```
 
 # 💡 Performance

@@ -7,11 +7,15 @@ SEARCH_MODE=${12}
 SIMULATION_LLM=${14}
 START_THRESHOLD=${16}
 END_THRESHOLD=${18}
+SEARCH_ENGINE=${20}
+MAX_TURNS=${22}
+TOPK=${24}
+
 
 WAND_PROJECT='ZeroSearch'
 MODEL_NAME="${MODEL_PATH##*/}"
 
-export EXPERIMENT_NAME=${MODEL_NAME}_PPO_${SEARCH_MODE}_${SIMULATION_LLM}_${START_THRESHOLD}_${END_THRESHOLD}
+export EXPERIMENT_NAME=${MODEL_NAME}_PPO_${SEARCH_MODE}_${SIMULATION_LLM}_${START_THRESHOLD}_${END_THRESHOLD}_${SEARCH_ENGINE}_turns_${MAX_TURNS}
 
 export VLLM_ATTENTION_BACKEND=XFORMERS # vllm + qwen2-7b with flash_attn has some issues
 
@@ -25,7 +29,7 @@ PYTHONUNBUFFERED=1 python3 -m verl.trainer.main_ppo \
     data.max_prompt_length=4096 \
     data.max_response_length=500 \
     data.max_start_length=2048 \
-    data.max_obs_length=500 \
+    data.max_obs_length=2048 \
     data.shuffle_train_dataloader=True \
     algorithm.adv_estimator=gae \
     actor_rollout_ref.model.path=$MODEL_PATH \
@@ -61,23 +65,25 @@ PYTHONUNBUFFERED=1 python3 -m verl.trainer.main_ppo \
     trainer.critic_warmup=0 \
     trainer.logger=['wandb'] \
     trainer.val_only=false \
-    trainer.val_before_train=True \
+    trainer.val_before_train=False \
     trainer.default_hdfs_dir=null \
     trainer.n_gpus_per_node=$NUM_GPUS_PER_NODE \
     trainer.nnodes=1 \
     trainer.save_freq=50 \
-    trainer.test_freq=50 \
+    trainer.test_freq=300 \
     trainer.project_name=$WAND_PROJECT \
     trainer.experiment_name=$EXPERIMENT_NAME \
     trainer.total_epochs=10 \
     trainer.total_training_steps=${TOTAL_STEPS} \
     trainer.default_hdfs_dir=null \
     trainer.default_local_dir=verl_checkpoints/$EXPERIMENT_NAME \
-    trainer.max_turns=2 \
+    trainer.max_turns=${MAX_TURNS} \
     trainer.reward_function=f1 \
     trainer.do_search=True \
     retriever.start_threshold=${START_THRESHOLD} \
     retriever.end_threshold=${END_THRESHOLD} \
     retriever.llm_ip=${IP} \
     retriever.search_mode=${SEARCH_MODE} \
+    retriever.search_engine=${SEARCH_ENGINE} \
+    retriever.topk=${TOPK} \
     retriever.simulate_llm=${SIMULATION_LLM}
