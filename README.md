@@ -1,6 +1,6 @@
 <div align="center">
 <p align="center">
-  <img src="assets/model.jpg" width="70%" height="70%" />
+  <img src="assets/model.jpg" width="70%" height="280%" />
 </p>
 </div>
 
@@ -39,7 +39,7 @@
 
 # 🤗 Resources
 
-| Retriever | Simulation Tuning Dataset                                    | Simulation LLMs                                              | Policy Model                                                 |
+| Retriever | Simulation Tuning Dataset                                    | Simulation LLMs                                              | Policy Models                                                 |
 | --------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Wikipedia | •[SimulationTuning\_wiki\_dataset](https://huggingface.co/datasets/sunhaonlp/SimulationTuning_wiki_dataset)     | •[Simulation\_LLM\_wiki\_3B\_V2](https://huggingface.co/sunhaonlp/Simulation_LLM_wiki_3B_V2)<br>•[Simulation\_LLM\_wiki\_7B\_V2](https://huggingface.co/sunhaonlp/Simulation_LLM_wiki_7B_V2)<br>•[Simulation\_LLM\_wiki\_14B\_V2](https://huggingface.co/sunhaonlp/Simulation_LLM_wiki_14B_V2)             | •[ZeroSearch\_wiki\_V2\_Qwen2.5\_3B](https://huggingface.co/Alibaba-NLP/ZeroSearch_wiki_V2_Qwen2.5_3B)<br>•[ZeroSearch\_wiki\_V2\_Qwen2.5\_3B\_Instruct](https://huggingface.co/Alibaba-NLP/ZeroSearch_wiki_V2_Qwen2.5_3B_Instruct)<br>•[ZeroSearch\_wiki\_V2\_Llama\_3.2\_3B](https://huggingface.co/Alibaba-NLP/ZeroSearch_wiki_V2_Llama_3.2_3B)<br>•[ZeroSearch\_wiki\_V2\_Llama\_3.2\_3B\_Instruct](https://huggingface.co/Alibaba-NLP/ZeroSearch_wiki_V2_Llama_3.2_3B_Instruct)<br>•[ZeroSearch\_wiki\_V2\_Qwen2.5\_7B](https://huggingface.co/Alibaba-NLP/ZeroSearch_wiki_V2_Qwen2.5_7B)<br>•[ZeroSearch\_wiki\_V2\_Qwen2.5\_7B\_Instruct](https://huggingface.co/Alibaba-NLP/ZeroSearch_wiki_V2_Qwen2.5_7B_Instruct)                         |
 | Google    | •[SimulationTuning\_google\_dataset](https://huggingface.co/datasets/sunhaonlp/SimulationTuning_google_dataset) | •[Simulation\_LLM\_google\_3B\_V2](https://huggingface.co/sunhaonlp/Simulation_LLM_google_3B_V2)<br>•[Simulation\_LLM\_google\_7B\_V2](https://huggingface.co/sunhaonlp/Simulation_LLM_google_7B_V2)<br>•[Simulation\_LLM\_google\_14B\_V2](https://huggingface.co/sunhaonlp/Simulation_LLM_google_14B_V2) | •[ZeroSearch\_google\_V2\_Qwen2.5\_3B](https://huggingface.co/Alibaba-NLP/ZeroSearch_google_V2_Qwen2.5_3B)<br>•[ZeroSearch\_google\_V2\_Qwen2.5\_3B\_Instruct](https://huggingface.co/Alibaba-NLP/ZeroSearch_google_V2_Qwen2.5_3B_Instruct)<br>•[ZeroSearch\_google\_V2\_Llama\_3.2\_3B](https://huggingface.co/Alibaba-NLP/ZeroSearch_google_V2_Llama_3.2_3B)<br>•[ZeroSearch\_google\_V2\_Llama\_3.2\_3B\_Instruct](https://huggingface.co/Alibaba-NLP/ZeroSearch_google_V2_Llama_3.2_3B_Instruct)<br>•[ZeroSearch\_google\_V2\_Qwen2.5\_7B](https://huggingface.co/Alibaba-NLP/ZeroSearch_google_V2_Qwen2.5_7B)<br>•[ZeroSearch\_google\_V2\_Qwen2.5\_7B\_Instruct](https://huggingface.co/Alibaba-NLP/ZeroSearch_google_V2_Qwen2.5_7B_Instruct) |
