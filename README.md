@@ -158,9 +158,9 @@ bash train_ppo.sh NUM_GPUS_PER_NODE 4 MODEL_PATH Qwen2.5-3B-Instruct DATA_PATH Z
 
 This work is implemented based on [Search-R1](https://github.com/PeterGriffinJin/Search-R1), [veRL](https://github.com/volcengine/verl), and [RAGEN](https://github.com/ZihanWang314/RAGEN/tree/main). We sincerely thank the authors of these projects for their valuable contributions to the open-source community.
 
-## Awesome work inspired by ZeroSearch
+## 👍 Awesome work inspired by ZeroSearch
 
-- [SSRL](https://github.com/TsinghuaC3I/SSRL): SSRL: Self-Search Reinforcement Learning. [![[code]](https://img.shields.io/github/stars/GAIR-NLP/DeepResearcher)](https://github.com/TsinghuaC3I/SSRL)
+- [SSRL](https://github.com/TsinghuaC3I/SSRL): SSRL: Self-Search Reinforcement Learning. [![[code]](https://img.shields.io/github/stars/TsinghuaC3I/SSRL)](https://github.com/TsinghuaC3I/SSRL)
 
 
 # 📧 Contact
